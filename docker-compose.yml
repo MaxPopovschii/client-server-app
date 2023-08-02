@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  frontend:
+    # Используем Dockerfile для фронтенд-приложения
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    # Определяем пробрасываемый порт для доступа к фронтенд-приложению
+    ports:
+      - "80:80"
+
+  backend:
+    # Используем Dockerfile для бэкенд-сервера
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # Определяем пробрасываемый порт для доступа к бэкенд-серверу
+    ports:
+      - "8080:8080"
