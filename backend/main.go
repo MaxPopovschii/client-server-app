@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// Book структура представляет информацию о книге
+// Book structure 
 type Book struct {
 	ID       int    `json:"id"`
 	Title    string `json:"title"`
@@ -20,7 +20,7 @@ type Book struct {
 var books []Book
 
 func main() {
-	// Добавим несколько книг для примера
+	// Just added some books for example
 	books = []Book{
 		{ID: 1, Title: "Book 1", Author: "Author 1", Genre: "Fiction", Price: 29.99, Quantity: 10},
 		{ID: 2, Title: "Book 2", Author: "Author 2", Genre: "Non-Fiction", Price: 19.99, Quantity: 5},
@@ -34,7 +34,7 @@ func main() {
 }
 
 func getBooksHandler(w http.ResponseWriter, r *http.Request) {
-	// Отправляем список книг в формате JSON
+	// Send the books in JSON format
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(books)
 }
@@ -45,7 +45,7 @@ func addBookHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Получаем данные из тела запроса
+	// Get the data form request body
 	var newBook Book
 	err := json.NewDecoder(r.Body).Decode(&newBook)
 	if err != nil {
@@ -53,10 +53,10 @@ func addBookHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Генерируем новый ID для книги
+	// Generate a new ID
 	newBook.ID = len(books) + 1
 
-	// Добавляем книгу в список
+	// Add a book to the list
 	books = append(books, newBook)
 
 	w.WriteHeader(http.StatusCreated)
