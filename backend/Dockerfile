@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Используем базовый образ с Go для сборки бэкенд-сервера
-FROM golang:1.16-alpine
+FROM golang:1.26.1-alpine
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
